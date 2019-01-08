@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
-  authors;
+  authors = [];
 
   constructor(service: AuthorService) { 
     this.authors = service.getAuthors();
