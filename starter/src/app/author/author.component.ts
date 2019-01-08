@@ -1,4 +1,4 @@
-import { AuthorServicesService } from '../author-services.service';
+import { AuthorService } from '../author.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
+  authors;
 
-  constructor(service: AuthorServicesService) { }
-  AuthorServicesService
+  constructor(service: AuthorService) { 
+    this.authors = service.getAuthors();
+  }
+  
   ngOnInit() {
+    
   }
 
 }
