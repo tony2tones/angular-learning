@@ -6,14 +6,14 @@ import { AuthorsService } from './authors.service';
     template: `
         <h2>{{ title }}</h2>
          <ul>
-            <li *ngFor="let course of authors"> 
-            {{ course }}
+            <li *ngFor="let author of authors"> 
+            {{ author }}
             </li>
         </ul>`
 })
 
 
-export class authorsComponent {
+export class AuthorsComponent {
     title = "List of authors";
     authors;
 
