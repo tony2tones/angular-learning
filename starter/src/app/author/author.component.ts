@@ -1,4 +1,4 @@
-import { AuthorService } from '../author.service';
+import { AuthorsService } from '../authors.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AuthorComponent implements OnInit {
   authors = [];
 
-  constructor(service: AuthorService) { 
+  constructor(service: AuthorsService) { 
     this.authors = service.getAuthors();
   }
   
