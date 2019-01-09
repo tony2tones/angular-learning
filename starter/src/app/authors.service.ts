@@ -4,9 +4,13 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthorsService {
-
+authList = ['Author 1','Author 3','Author 3'];
   constructor() { }
   getAuthors() {
-    return ['Author 1','Author 3','Author 3'];
+    return this.authList;
+  }
+
+  authorCount() {
+    return this.authList.length;
   }
 }
