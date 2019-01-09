@@ -9,8 +9,4 @@ authList = ['Author 1','Author 3','Author 3'];
   getAuthors() {
     return this.authList;
   }
-
-  authorCount() {
-    return this.authList.length;
-  }
 }
