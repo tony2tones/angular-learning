@@ -9,7 +9,7 @@ import { CoursesComponent } from './courses.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorsService } from './authors.service';
 import { CoursesService } from './courses.service';
-import { TitlecasePipe } from './titlecase.pipe';
+import { TitleCasePipe } from './title-case.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { TitlecasePipe } from './titlecase.pipe';
     CoursesComponent,
     AuthorsComponent,
     StarComponent,
-    TitlecasePipe
+    TitleCasePipe,
+    
   ],
   imports: [
     BrowserModule,

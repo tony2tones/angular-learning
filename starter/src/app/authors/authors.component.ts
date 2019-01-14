@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthorsService } from '../authors.service';
-import  FormsModule  from '@angular/forms';
 
 @Component({
     selector: 'authors',
