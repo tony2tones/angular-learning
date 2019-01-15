@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Pipe({
   name: 'titleCase'
@@ -9,21 +10,24 @@ export class TitleCasePipe implements PipeTransform {
     if(!value){
     return null;
     }
-    let preps = [
-      'of',
-      'the'
-    ]
     let words = value.split(' ');
     if(value) {
       for(var i = 0; i < words.length; i++){
-        if(i > 0 && preps.includes(words[i].toLowerCase())){
+        if(i > 0 && this.isPrepersition(words[i])){
           words[i] = words[i].toLowerCase();
         } else {
-          words[i] = words[i].substr(0,1).toUpperCase() + words[i].substr(1).toLowerCase();
+          words[i] = this.title(words[i]);
         }
       }
       return words.join(' ');
     }
+  }
+  private title(words:string) {
+    return words = words.substr(0,1).toUpperCase() + words.substr(1).toLowerCase();
+  }
+  private isPrepersition(words: string): boolean {
+    let preps = ['of','the'];
+    return preps.includes(words.toLowerCase());
   }
 
 }
