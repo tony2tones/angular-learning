@@ -1,1 +1,5 @@
-<i (click)="onClick()" [ngClass]= "isActive ? 'far fa-star' : 'fas fa-star'">
+<i class ="fa-star"
+   [class.far]="isSelected"
+   [class.fas]="!isSelected"
+   (click)="onClick()"   
+   >
