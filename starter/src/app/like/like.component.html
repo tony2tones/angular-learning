@@ -1,6 +1,6 @@
 <i 
 class=" fa-heart"
 [class.far]="!isSelected"
-[class.fas]="!isSelected"
+[class.fas]="isSelected"
 (click)="onClick()"
-></i>
+> {{ likesCount }}</i>

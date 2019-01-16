@@ -10,7 +10,7 @@ export class LikeComponent {
   @Input('likesCount') likesCount: number;
   
   onClick() {
-    this.likesCount = this.isSelected ? -1 : 1;
+    this.likesCount += this.isSelected ? -1 : 1;
     this.isSelected = !this.isSelected;
     console.log('this has been clicked');
   }
