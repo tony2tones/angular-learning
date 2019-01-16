@@ -1,3 +1,6 @@
-<like 
-[likesCount]="tweet.likesCount"
-[isActive]="tweet.isLiked"></like>
+<i 
+class=" fa-heart"
+[class.far]="!isSelected"
+[class.fas]="!isSelected"
+(click)="onClick()"
+></i>

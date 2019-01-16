@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,13 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
+  tweet = {
+          likesCount: 0,
+          isActive: false
+          }
+
   title = 'Angular app';
   post = {
     title: 'Title',
     isFavorite: true
   }
 
-  onFavoriteChanged(isFavorite) {
-    console.log('Favorite has changed', isFavorite);
-  }
 }

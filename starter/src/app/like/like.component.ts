@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'like',
@@ -6,9 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./like.component.css']
 })
 export class LikeComponent {
-  tweet = {
-          likesCount: 0,
-          isActive: false
-          }
+  @Input('isActive') isSelected: boolean;
+  @Input('likesCount') likesCount: number;
   
+  onClick() {
+    this.likesCount = this.isSelected ? -1 : 1;
+    this.isSelected = !this.isSelected;
+    console.log('this has been clicked');
+  }
 }

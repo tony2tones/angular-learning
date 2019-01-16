@@ -1,3 +1,4 @@
-<favorite [isFavorite]="post.isFavorite" (change) ="onFavoriteChanged($event)"></favorite>
-
-<like></like>
+<like
+[likesCount]="tweet.likesCount"
+[isActive]="tweet.isLiked"
+></like>
