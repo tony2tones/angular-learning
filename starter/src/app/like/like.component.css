@@ -1,0 +1,15 @@
+.toasted  {
+    color: #ccc;
+}
+.toast {
+    color:deeppink;
+}
+
+.heart-comp {
+    width:40px;
+    height: 40px;
+}
+
+.fa-heart:hover {
+    cursor: pointer;
+}
