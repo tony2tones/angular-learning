@@ -12,6 +12,8 @@ import { CoursesService } from './courses.service';
 import { TitleCasePipe } from './title-case.pipe';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { LikeComponent } from './like/like.component';
+import { InputFormatDirective } from './input-format.directive';
+import { ZippyComponent } from './zippy/zippy.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { LikeComponent } from './like/like.component';
     TitleCasePipe,
     FavoriteComponent,
     LikeComponent,
+    InputFormatDirective,
+    ZippyComponent,
     
   ],
   imports: [

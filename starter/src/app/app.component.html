@@ -1,26 +1,7 @@
-<like [likesCount]="tweet.likesCount" [isActive]="tweet.isLiked"></like>
+<zippy title="Shipping Details">
+    Shipping Details content
+</zippy>
 
-<div *ngIf="courses.length > 0; then coursesList; else noCourses"></div>
-<ng-template #coursesList> List of Courses </ng-template>
-<ng-template #noCourses> No courses yet </ng-template>
-
-<div [hidden]="courses.length === 0">No courses Hombre</div>
-<div [hidden]="courses.length > 0">list of them courses</div>
-
-  <ul class="nav nav-tabs">
-    <li [class.active]="viewMode == 'map'"><a (click)="viewMode = 'map'">Map View</a></li>
-    <li [class.active]="viewMode == 'list'"><a (click)="viewMode = 'list'"> List View</a></li>
-  </ul>
-<div [ngSwitch]="viewMode">
-    <div *ngSwitchCase="'map'">Map View Content</div>
-    <div *ngSwitchCase="'list'">List View Content</div>
-    <div *ngSwitchDefault>toasty</div>
-</div>
-<h3>Add and remove courses</h3>
-<button (click)="onAdd()">Add course</button>
-<ul >
-    <li *ngFor="let course of courses">
-        {{course.name}} 
-        <button (click)="onRemove(course)">Remove course</button>
-    </li>
-</ul>
+<zippy title="Billing Details">
+        Billing Details content
+</zippy>
