@@ -1,8 +1,8 @@
 <i 
-class=" fa-heart"
+class="fas fa-heart"
 [ngClass]="{
-    'far': !isSelected,
-    'fas': isSelected   
+    'toasted': !isSelected,
+    'toaster': isSelected
 }"
 (click)="onClick()"
 > {{ likesCount }}</i>
