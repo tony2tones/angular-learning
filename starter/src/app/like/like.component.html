@@ -1,6 +1,8 @@
 <i 
 class=" fa-heart"
-[class.far]="!isSelected"
-[class.fas]="isSelected"
+[ngClass]="{
+    'far': !isSelected,
+    'fas': isSelected   
+}"
 (click)="onClick()"
 > {{ likesCount }}</i>
