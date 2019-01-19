@@ -1,1 +1,14 @@
-<div  class="card"> text </div>
+<div class="zippy">
+<div class="card heading"
+ (click)="onToggle()"> 
+  <h3>{{ title }}</h3><span 
+  class="fas float" 
+  [ngClass]="{
+    'fa-chevron-down':isActive,
+    'fa-chevron-up':!isActive
+  }"></span>
+  
+ </div>
+<div *ngIf="isActive" class="content" >Shipping Details content</div>
+</div>
+

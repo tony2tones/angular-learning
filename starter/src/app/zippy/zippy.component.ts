@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'zippy',
@@ -6,8 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./zippy.component.css']
 })
 export class ZippyComponent {
+ @Input('title') title: string;
+ @Input('isActive') isActive: boolean;
 
-  constructor() { }
-
-
+  onToggle() {
+    this.isActive = !this.isActive;
+  }
 }
