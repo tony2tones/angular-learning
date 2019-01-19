@@ -9,7 +9,7 @@ import { AuthorsService } from '../authors.service';
 export class AuthorsComponent {
   authors;
   constructor(service: AuthorsService) {
-    this.authors = service.authors;
+    this.authors = service.getAuthors();
   }
 
 }
