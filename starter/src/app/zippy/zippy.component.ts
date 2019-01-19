@@ -7,9 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ZippyComponent {
  @Input('title') title: string;
- @Input('isActive') isActive: boolean;
+ @Input('isExpanded') isExpanded: boolean;
 
   onToggle() {
-    this.isActive = !this.isActive;
+    this.isExpanded = !this.isExpanded;
   }
 }
