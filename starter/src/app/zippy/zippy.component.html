@@ -1,12 +1,12 @@
 <div class="zippy">
-<div class="card heading" [class.isExpanded]="isExpanded"
+<div class="heading" [class.isExpanded]="isExpanded"
  (click)="onToggle()"> 
-  <h3>{{ title }}</h3><i 
+  {{ title }}<span
   class="fas float" 
   [ngClass]="{
     'fa-chevron-down':isExpanded,
     'fa-chevron-up':!isExpanded
-  }"></i>
+  }"></span>
  </div>
  <div *ngIf="isExpanded" class="body" >
  <ng-content></ng-content>
