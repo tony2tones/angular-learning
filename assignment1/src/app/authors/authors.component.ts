@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthorsService } from '../authors.service';
 
 @Component({
   selector: 'authors',
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./authors.component.css']
 })
 export class AuthorsComponent {
-authors = ['Author 1','Author 2','Author 3'];
+  authors;
+  constructor(service: AuthorsService) {
+    this.authors = service.authors;
+  }
 
 }
