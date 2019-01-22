@@ -9,13 +9,24 @@ import { CoursesComponent } from './courses.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorsService } from './authors.service';
 import { CoursesService } from './courses.service';
+import { TitleCasePipe } from './title-case.pipe';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { LikeComponent } from './like/like.component';
+import { InputFormatDirective } from './input-format.directive';
+import { ZippyComponent } from './zippy/zippy.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CoursesComponent,
     AuthorsComponent,
-    StarComponent
+    StarComponent,
+    TitleCasePipe,
+    FavoriteComponent,
+    LikeComponent,
+    InputFormatDirective,
+    ZippyComponent,
+    
   ],
   imports: [
     BrowserModule,
