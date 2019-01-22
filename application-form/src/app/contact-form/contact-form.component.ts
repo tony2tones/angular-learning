@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent {
-
+  log(x) {console.log(x)}
 }
+ 
