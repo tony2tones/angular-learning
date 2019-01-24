@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="submit(f)">
-  <div ngModelGroup="contact">
+  <div ngModelGroup="contact" #contact="ngModelGroup">
     <div class="form-group">
       <label for="firstName"> First Name </label>
       <input
@@ -38,5 +38,5 @@
       #commment="ngModel"
     ></textarea>
   </div>
-  <button class="btn btn-primary">Submit</button>
+  <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 </form>
