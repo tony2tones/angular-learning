@@ -1,10 +1,15 @@
 <form #f="ngForm">
   <div class="form-group">
-    <label for="courseName">Course Name </label> 
-    <input required 
-    id="courseName" 
-    type="text"ngModel
-    name="courseName"
-    #courseName="ngModel" />
+    <label for="courseName">Course Name </label>
+    <input
+      ngModel name="courseName"
+      required
+      (change)="log()"
+      id="courseName"
+      type="text"
+      #courseName="ngModel"
+      class="form-control"
+    />
   </div>
+  <div class="alert alert-danger" *ngIf="!courseName.valid && course.untouched">this is a test div</div>
 </form>
