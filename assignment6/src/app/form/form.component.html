@@ -4,12 +4,12 @@
     <input
       ngModel name="courseName"
       required
-      (change)="log()"
+      (change)="log(f)"
       id="courseName"
       type="text"
       #courseName="ngModel"
       class="form-control"
     />
   </div>
-  <div class="alert alert-danger" *ngIf="!courseName.valid && course.untouched">this is a test div</div>
+  <div class="alert alert-danger" *ngIf="!courseName.valid && courseName.touched">this is a test div</div>
 </form>
