@@ -1,6 +1,10 @@
 <form #f="ngForm">
   <div class="form-group">
     <label for="courseName">Course Name </label> 
-    <input required id="courseName" type="text" />
+    <input required 
+    id="courseName" 
+    type="text"ngModel
+    name="courseName"
+    #courseName="ngModel" />
   </div>
 </form>
