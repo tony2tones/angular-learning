@@ -2,14 +2,23 @@
   <div class="form-group">
     <label for="courseName">Course Name </label>
     <input
-      ngModel name="courseName"
+      ngModel 
+      name="courseName"
+      minlength="5"
+      maxlength="30"
       required
-      (change)="log(f)"
+      (change)="log(courseName)"
       id="courseName"
       type="text"
       #courseName="ngModel"
       class="form-control"
     />
-  </div>
-  <div class="alert alert-danger" *ngIf="!courseName.valid && courseName.touched">this is a test div</div>
+  
+  <div class="alert alert-danger" *ngIf="!courseName.valid && courseName.touched">
+        <div *ngIf="courseName.errors.required">Name is required.</div>
+        <div *ngIf="courseName.errors.minlength">
+          Name must be at least {{ courseName.errors.minlength.requiredLength }} characters.
+        </div>
+      </div>
+    </div>
 </form>
