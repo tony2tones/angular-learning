@@ -6,7 +6,8 @@ import { Component} from '@angular/core';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-
+  categories = ["Anuglar","React","Vuejs"]
+  
   log(x){
     console.log(x);
 

@@ -20,5 +20,22 @@
           Name must be at least {{ courseName.errors.minlength.requiredLength }} characters.
         </div>
       </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select required ngModel name="category" id="category" class="form-control">
+          <option>Please select an option</option>
+          <option *ngFor="let category of categories">{{ category }}</option>
+        </select>
+       </div>
+       <div class="alert alert-danger" *ngIf="!category.valid"> 
+          <div *ngIf="category.errors.required"> Field is required.</div>
+      </div> 
+      <label>
+        <input type="checkbox" ngModel name="expand"id="expand"> Expand global search
+      </label>
+      
     </div>
+
+    <p>{{ f.value | json }}</p>
 </form>
+
