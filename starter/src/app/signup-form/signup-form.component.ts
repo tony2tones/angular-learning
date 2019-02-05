@@ -10,12 +10,17 @@ export class SignupFormComponent {
   form = new FormGroup({
     username: new FormControl('',[
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      Validators.maxLength(25)
     ]),
     password: new FormControl('',Validators.required),
   });
 
   get username() {
     return this.form.get('username');
+  }
+  submit(f){
+    f = this.username;
+    console.log(f);
   }
 }
