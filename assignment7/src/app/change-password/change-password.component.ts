@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl ,Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-change-password',
+  selector: 'change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
-export class ChangePasswordComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+export class ChangePasswordComponent {
 
 }
