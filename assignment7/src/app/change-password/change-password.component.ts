@@ -17,7 +17,7 @@ export class ChangePasswordComponent {
       "",
       Validators.required,
       changePasswordValidators.oldPasswordCheck
-    ),
+      ),
     newPassword: new FormControl("", Validators.required),
     confirmPassword: new FormControl("", Validators.required)
   });
