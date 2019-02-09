@@ -7,5 +7,10 @@ import { FormGroup, FormControl ,Validators } from '@angular/forms';
   styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent {
+  from = new FormGroup({
+    oldPassword: new FormControl(),
+    newPassword: new FormControl(),
+    confirmPassword: new FormControl()
+  })
 
 }
