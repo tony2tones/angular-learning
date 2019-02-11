@@ -11,4 +11,18 @@ export class changePasswordValidators {
       }, 2000);
     });
   }
+  static confirmPasswordCheck(
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        let newPassword = control.get("newPassword");
+        let confirmPassword = control.get("confirmPassword");
+        if (newPassword != confirmPassword)
+          resolve({ confirmPasswordCheck: true });
+        else
+        resolve(null);
+      }, 2000);
+    });
+  }
 }
