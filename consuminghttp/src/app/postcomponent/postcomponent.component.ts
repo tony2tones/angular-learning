@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./postcomponent.component.css']
 })
 export class PostcomponentComponent implements OnInit {
+posts;
 
   constructor(http: HttpClient) {
     http.get('http://jsonplaceholder.typicode.com/posts')
     .subscribe(response => {
+      this.posts = response
       console.log(response);
-    })
+    });
    }
 
   ngOnInit() {
