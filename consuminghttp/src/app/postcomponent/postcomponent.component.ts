@@ -20,7 +20,8 @@ private url = 'http://jsonplaceholder.typicode.com/posts';
 
   createPost(input: HTMLInputElement) {
     let post:any = { title:input.value };
-
+    input.value = '';
+    
     this.http.post(this.url, JSON.stringify(post))
     .subscribe(response => {
       post.id = response['id'];
