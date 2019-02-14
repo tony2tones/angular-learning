@@ -19,11 +19,13 @@ private url = 'http://jsonplaceholder.typicode.com/posts';
   }   
 
   createPost(input: HTMLInputElement) {
-    let post = { title:input.value };
+    let post:any = { title:input.value };
 
     this.http.post(this.url, JSON.stringify(post))
     .subscribe(response => {
-      console.log(response);
+      post.id = response['id'];
+      console.log(post.id);
+      this.posts.splice(0,0, post);
     });
   }
 
