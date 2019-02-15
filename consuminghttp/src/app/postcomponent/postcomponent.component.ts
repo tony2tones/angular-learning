@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'postcomponent',
@@ -8,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostcomponentComponent implements OnInit{
 posts;
-private url = 'http://jsonplaceholder.typicode.com/posts';
 
-  constructor(private http: HttpClient) { }   
+
+  constructor( service: PostService) { }   
 
   ngOnInit() {
     this.http.get(this.url)
