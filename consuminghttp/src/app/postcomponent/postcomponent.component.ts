@@ -1,22 +1,23 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'postcomponent',
   templateUrl: './postcomponent.component.html',
   styleUrls: ['./postcomponent.component.css']
 })
-export class PostcomponentComponent {
+export class PostcomponentComponent implements OnInit{
 posts;
 private url = 'http://jsonplaceholder.typicode.com/posts';
 
-  constructor(private http: HttpClient) {
-    http.get(this.url)
+  constructor(private http: HttpClient) { }   
+
+  ngOnInit() {
+    this.http.get(this.url)
     .subscribe(response => {
-      this.posts = response
-      console.log(this.posts);
+      this.posts = response;
     });
-  }   
+  }
 
   createPost(input: HTMLInputElement) {
     let post:any = { title:input.value };
@@ -34,6 +35,14 @@ private url = 'http://jsonplaceholder.typicode.com/posts';
     this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true}))
     .subscribe(response => {
       console.log(response);
+    })
+  }
+
+  deletePost(post){
+    this.http.delete(this.url + '/' + post.id)
+    .subscribe(response => {
+      let index = this.posts.indexOf(post);
+      this.posts.splice(index, 1);
     })
   }
 }

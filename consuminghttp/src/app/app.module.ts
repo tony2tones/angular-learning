@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
+import { PostService } from './post.service';
 import { AppComponent } from './app.component';
 import { PostcomponentComponent } from './postcomponent/postcomponent.component';
 
@@ -14,7 +15,9 @@ import { PostcomponentComponent } from './postcomponent/postcomponent.component'
     BrowserModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
