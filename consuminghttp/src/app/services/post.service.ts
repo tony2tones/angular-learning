@@ -9,6 +9,6 @@ export class PostService {
   constructor(private http : HttpClient) { }
 
   getPosts(){
-    this.http.get(this.url)
+    return  this.http.get(this.url);
   }
 }
