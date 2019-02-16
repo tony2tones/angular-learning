@@ -11,4 +11,13 @@ export class PostService {
   getPosts(){
     return  this.http.get(this.url);
   }
+
+  create(post) {
+    return this.http.post(this.url, JSON.stringify(post));
+  }
+
+  deletePost(post){
+    return this.http.delete(this.url + '/' + post.id);
+  }
 }
+ 

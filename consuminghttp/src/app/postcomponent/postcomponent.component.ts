@@ -1,49 +1,49 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { PostService } from '../services/post.service';
+import { Component, OnInit } from "@angular/core";
+
+import { PostService } from "../services/post.service";
 
 @Component({
-  selector: 'postcomponent',
-  templateUrl: './postcomponent.component.html',
-  styleUrls: ['./postcomponent.component.css']
+  selector: "postcomponent",
+  templateUrl: "./postcomponent.component.html",
+  styleUrls: ["./postcomponent.component.css"]
 })
-export class PostcomponentComponent implements OnInit{
-posts;
+export class PostcomponentComponent implements OnInit {
+  posts;
+  private url = "http://jsonplaceholder.typicode.com/posts";
 
-
-  constructor( private service: PostService) { }   
-
+  constructor(private service: PostService) {}
   ngOnInit() {
     this.service.getPosts()
-    .subscribe(response => {
+      .subscribe(response => {
       this.posts = response;
+    }, error => {
+      alert('An unexpected error has occurred.');
+      console.log(error);
     });
   }
 
   createPost(input: HTMLInputElement) {
-    let post:any = { title:input.value };
-    input.value = '';
-    
-    this.http.post(this.url, JSON.stringify(post))
-    .subscribe(response => {
-      post.id = response['id'];
+    let post: any = { title: input.value };
+    input.value = "";
+
+    this.service.create(post)
+      .subscribe(response => {
+      post.id = response["id"];
       console.log(post.id);
-      this.posts.splice(0,0, post);
+      this.posts.splice(0, 0, post);
+    }, error => {
+      alert('An unexpected error has occurred.')
+      console.log(error);
     });
   }
-
-  updatePost(post){
-    this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true}))
-    .subscribe(response => {
-      console.log(response);
-    })
-  }
-
   deletePost(post){
-    this.http.delete(this.url + '/' + post.id)
+    this.service.deletePost(post)
     .subscribe(response => {
       let index = this.posts.indexOf(post);
-      this.posts.splice(index, 1);
+      this.posts.splice(index,1);
+    }, error =>{
+      alert('An unexpected error has occurred.')
+      console.log(error);
     })
   }
 }
