@@ -23,9 +23,6 @@ export class PostcomponentComponent implements OnInit {
       (error: Response) => {
         if (error.status === 404) {
           alert("Service is not available.");
-        } else {
-          alert("An unexpected error has occurred.");
-          console.log(error);
         }
       }
     );
@@ -43,12 +40,7 @@ export class PostcomponentComponent implements OnInit {
       },
       (error: AppError) => {
         if (error instanceof BadInput) {
-          alert("An unexpected error has occurred.");
-          console.log(error);
-        } else {
-          alert("An unexpected error has occurred.");
-          console.log(error);
-        }
+        } else throw error;
       }
     );
   }
@@ -66,10 +58,7 @@ export class PostcomponentComponent implements OnInit {
       (error: AppError) => {
         if (error instanceof NotFoundError) {
           alert("This post has already been deleted.");
-        } else {
-          alert("An unexpected error has occurred.");
-          console.log(error);
-        }
+        } 
       }
     );
   }

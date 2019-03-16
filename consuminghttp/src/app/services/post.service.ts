@@ -20,7 +20,7 @@ export class PostService {
     return this.http
       .post(this.url, JSON.stringify(post))
       .catch((error: Response) => {
-        if (error.status === 400) {
+        if (error instanceof BadInput) {
           return Observable.throw(new BadInput(error.json()));
         }
         return Observable.throw(new AppError(error.json()));
@@ -30,9 +30,9 @@ export class PostService {
   deletePost(id) {
     return this.http.delete(this.url + "/" + id).catch((error: Response) => {
       if (error.status === 404) {
-        return Observable.throw(new NotFoundError());
+        return Observable.throwError(new NotFoundError());
       }
-      return Observable.throw(new AppError(error));
+      return Observable.throwError(new AppError(error));
     });
   }
 }
