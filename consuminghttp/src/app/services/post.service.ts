@@ -1,33 +1,38 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Rx';
-import {AppError} from '../common/validators/app-error'
-import { NotFoundError } from '../common/validators/not-found-error';
-
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Rx";
+import { AppError } from "../common/validators/app-error";
+import { NotFoundError } from "../common/validators/not-found-error";
+import { BadInput } from "../common/validators/bad-input";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class PostService {
-  private url = 'http://jsonplaceholder.typicode.com/posts';
-  constructor(private http : HttpClient) { }
+  private url = "http://jsonplaceholder.typicode.com/posts";
+  constructor(private http: HttpClient) {}
 
-  getPosts(){
-    return  this.http.get(this.url);
+  getPosts() {
+    return this.http.get(this.url);
   }
 
   create(post) {
-    return this.http.post(this.url, JSON.stringify(post));
+    return this.http
+      .post(this.url, JSON.stringify(post))
+      .catch((error: Response) => {
+        if (error.status === 400) {
+          return Observable.throw(new BadInput(error.json()));
+        }
+        return Observable.throw(new AppError(error.json()));
+      });
   }
 
-  deletePost(id){
-    return this.http.delete(this.url + '/' + id)
-    .catch((error: Response) => {
-      if(error.status === 404) {
-        return Observable.throw(new NotFoundError())
+  deletePost(id) {
+    return this.http.delete(this.url + "/" + id).catch((error: Response) => {
+      if (error.status === 404) {
+        return Observable.throw(new NotFoundError());
       }
       return Observable.throw(new AppError(error));
     });
   }
 }
- 
