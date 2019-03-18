@@ -27,12 +27,18 @@ export class PostService {
       });
   }
 
-  deletePost(id) {
-    return this.http.delete(this.url + "/" + id).catch((error: Response) => {
-      if (error.status === 404) {
-        return Observable.throwError(new NotFoundError());
-      }
-      return Observable.throwError(new AppError(error));
-    });
+  updatePost(post) {
+    return this.http.patch(this.url + '/' + post.id, JSON.stringify({isRead: true}));
   }
+
+  deletePost(id) {
+    return this.http.delete(this.url + "/" + id).catch(this.handError)
+  }
+
+  private handError(error:Response) {
+    if (error.status === 404) {
+      return Observable.throwError(new NotFoundError());
+    }
+    return Observable.throwError(new AppError(error));
+  };
 }
