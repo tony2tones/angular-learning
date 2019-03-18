@@ -40,20 +40,16 @@ export class PostcomponentComponent implements OnInit {
       },
       (error: AppError) => {
         if (error instanceof BadInput) {
+          // this.form.setErrors(error.originalError);
         } else throw error;
       }
     );
   }
   deletePost(post) {
-    this.service.deletePost(600000).subscribe(
+    this.service.deletePost(post.id).subscribe(
       (response: Object) => {
         let index = this.posts.indexOf(post);
-        if (!response.hasOwnProperty(post)) {
-          alert(`Post ${index} does not exist`);
-          console.error(response);
-        }
-        // let index = this.posts.indexOf(post);
-        // this.posts.splice(index,1);
+        this.posts.splice(index,1);
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {

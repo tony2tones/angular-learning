@@ -21,9 +21,9 @@ export class PostService {
       .post(this.url, JSON.stringify(post))
       .catch((error: Response) => {
         if (error instanceof BadInput) {
-          return Observable.throw(new BadInput(error.json()));
+          return Observable.throwError(new BadInput(error.json()));
         }
-        return Observable.throw(new AppError(error.json()));
+        return Observable.throwError(new AppError(error.json()));
       });
   }
 
