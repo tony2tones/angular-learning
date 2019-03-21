@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Rx";
 import { AppError } from "../common/validators/app-error";
 import { NotFoundError } from "../common/validators/not-found-error";
 import { BadInput } from "../common/validators/bad-input";
+import { Response } from 'selenium-webdriver/http';
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +13,8 @@ export class DataService {
   constructor(private url: string, private http: HttpClient) {}
 
   getAll() {
-    return this.http.get(this.url).catch(this.handleError);
+    return this.http.get(this.url)
+        .catch(this.handleError);
   }
 
   create(resource) {

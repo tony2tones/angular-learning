@@ -16,16 +16,7 @@ export class PostcomponentComponent implements OnInit {
 
   constructor(private service: PostService) {}
   ngOnInit() {
-    this.service.getAll().subscribe(
-      response => {
-        this.posts = response;
-      },
-      (error: Response) => {
-        if (error.status === 404) {
-          alert("Service is not available.");
-        }
-      }
-    );
+    this.service.getAll().subscribe(posts => (this.posts = posts));
   }
 
   createPost(input: HTMLInputElement) {
@@ -37,24 +28,26 @@ export class PostcomponentComponent implements OnInit {
         post.id = response["id"];
         console.log(post.id);
         this.posts.splice(0, 0, post);
-      },
-      (error: AppError) => {
-        if (error instanceof BadInput) {
-          // this.form.setErrors(error.originalError);
-        } else throw error;
+
+        // this.service.create(post).subscribe(
+        //   post => (post["id"] = this.posts.splice(0, 0, post)))
+        //     // console.log(post.id); 
+        // }
+
       }
     );
   }
+
   deletePost(post) {
     this.service.delete(post.id).subscribe(
       (response: Object) => {
         let index = this.posts.indexOf(post);
-        this.posts.splice(index,1);
+        this.posts.splice(index, 1);
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
           alert("This post has already been deleted.");
-        } 
+        }
       }
     );
   }
