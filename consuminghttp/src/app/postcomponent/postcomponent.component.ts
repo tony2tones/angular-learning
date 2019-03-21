@@ -43,11 +43,6 @@ export class PostcomponentComponent implements OnInit {
       (response: Object) => {
         let index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
-      },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          alert("This post has already been deleted.");
-        }
       }
     );
   }
