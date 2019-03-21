@@ -16,7 +16,7 @@ export class PostcomponentComponent implements OnInit {
 
   constructor(private service: PostService) {}
   ngOnInit() {
-    this.service.getPosts().subscribe(
+    this.service.getAll().subscribe(
       response => {
         this.posts = response;
       },
@@ -46,7 +46,7 @@ export class PostcomponentComponent implements OnInit {
     );
   }
   deletePost(post) {
-    this.service.deletePost(post.id).subscribe(
+    this.service.delete(post.id).subscribe(
       (response: Object) => {
         let index = this.posts.indexOf(post);
         this.posts.splice(index,1);
