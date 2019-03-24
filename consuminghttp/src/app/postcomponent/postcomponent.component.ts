@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
 import { PostService } from "../services/post.service";
-import { AppError } from "../common/validators/app-error";
-import { NotFoundError } from "../common/validators/not-found-error";
-import { BadInput } from "../common/validators/bad-input";
+import { AppError } from 'app/common/validators/app-error';
+import { BadInput } from 'app/common/validators/bad-input';
 
 @Component({
   selector: "postcomponent",
@@ -16,49 +15,56 @@ export class PostcomponentComponent implements OnInit {
 
   constructor(private service: PostService) {}
   ngOnInit() {
-    this.service.getPosts().subscribe(
-      response => {
-        this.posts = response;
-      },
-      (error: Response) => {
-        if (error.status === 404) {
-          alert("Service is not available.");
-        }
-      }
-    );
+    this.service.getAll().subscribe(posts => (this.posts = posts));
   }
 
   createPost(input: HTMLInputElement) {
     let post: any = { title: input.value };
+    this.posts.splice(0, 0, post);
     input.value = "";
 
     this.service.create(post).subscribe(
       response => {
         post.id = response["id"];
         console.log(post.id);
-        this.posts.splice(0, 0, post);
+        
+
+        // this.service.create(post).subscribe(
+        //   post => (post["id"] = this.posts.splice(0, 0, post)))
+        //     // console.log(post.id); 
+        // }
+
       },
-      (error: AppError) => {
+      (error:AppError) => {
+        this.posts.splice(0, 1);
+
         if (error instanceof BadInput) {
-        } else throw error;
+          alert('this is baaad input');
+        } else (error instanceof AppError)
+          alert('something went wrong');
+        
       }
     );
   }
+
+  updatePost(post) {
+    this.service.update(post)
+    .subscribe(
+      updatedPost => {
+        console.log(updatedPost);
+      }
+    )
+  }
+
   deletePost(post) {
-    this.service.deletePost(600000).subscribe(
-      (response: Object) => {
-        let index = this.posts.indexOf(post);
-        if (!response.hasOwnProperty(post)) {
-          alert(`Post ${index} does not exist`);
-          console.error(response);
-        }
-        // let index = this.posts.indexOf(post);
-        // this.posts.splice(index,1);
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
+    this.service.delete(post.id).subscribe(
+      () => {
+        console.log('this is a success?');
       },
       (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          alert("This post has already been deleted.");
-        } 
+        
       }
     );
   }
