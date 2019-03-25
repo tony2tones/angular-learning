@@ -18,10 +18,9 @@ export class DataService {
   }
 
   create(resource) {
-      return Observable.throw( new AppError());
-    // return this.http
-    //   .post(this.url, JSON.stringify(resource))
-    //   .catch(this.handleError);
+    return this.http
+      .post(this.url, JSON.stringify(resource))
+      .catch(this.handleError);
   }
 
   update(resource) {

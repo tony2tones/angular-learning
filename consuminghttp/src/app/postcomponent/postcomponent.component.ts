@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 
 import { PostService } from "../services/post.service";
-import { AppError } from 'app/common/validators/app-error';
-import { BadInput } from 'app/common/validators/bad-input';
+import { AppError } from "app/common/validators/app-error";
+import { BadInput } from "app/common/validators/bad-input";
+import { NotFoundError } from "app/common/validators/not-found-error";
+import { isObject } from "util";
 
 @Component({
   selector: "postcomponent",
@@ -24,47 +26,35 @@ export class PostcomponentComponent implements OnInit {
     input.value = "";
 
     this.service.create(post).subscribe(
-      response => {
-        post.id = response["id"];
-        console.log(post.id);
-        
-
-        // this.service.create(post).subscribe(
-        //   post => (post["id"] = this.posts.splice(0, 0, post)))
-        //     // console.log(post.id); 
-        // }
-
-      },
-      (error:AppError) => {
+      (post: Object) => post["id"],
+      (error: AppError) => {
         this.posts.splice(0, 1);
 
         if (error instanceof BadInput) {
-          alert('this is baaad input');
-        } else (error instanceof AppError)
-          alert('something went wrong');
-        
+          alert("this is baaad input");
+        } else throw error;
       }
     );
   }
 
   updatePost(post) {
-    this.service.update(post)
-    .subscribe(
-      updatedPost => {
-        console.log(updatedPost);
-      }
-    )
+    this.service.update(post).subscribe(updatedPost => {
+      console.log(updatedPost);
+    });
   }
 
   deletePost(post) {
     let index = this.posts.indexOf(post);
     this.posts.splice(index, 1);
+
     this.service.delete(post.id).subscribe(
-      () => {
-        console.log('this is a success?');
-      },
+      null,
       (error: AppError) => {
-        
+        this.posts.splice(index, 0, post);
+
+        if (error instanceof NotFoundError)
+          alert("This post has already been deleted.");
+        else throw error;
       }
     );
   }
